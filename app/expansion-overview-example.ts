@@ -10,6 +10,31 @@ import {Component} from '@angular/core';
 })
 export class ExpansionOverviewExample {
   panelOpenState: boolean = false;
+  isSearchBox: boolean = false;
+
+  stopProp(event: Event) {
+    event.stopPropagation();
+  }
+  stopImProp(event: Event) {
+    event.stopImmediatePropagation();  
+  }
+  onRefresh(event: Event) {
+    this.stopProp(event);
+    alert("refreshing");
+  }
+  onButtonClick(event: Event) {
+    this.stopProp(event);
+    alert("button clicked");
+  }
+  onClose(event: Event) {
+    this.stopProp(event);
+    alert("closing");
+  }
+  onSearch(event: Event) {
+    //this.stopProp(event);
+    this.isSearchBox = !this.isSearchBox;
+  }
+
 }
 
 

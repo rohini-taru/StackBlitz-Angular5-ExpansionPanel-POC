@@ -1,11 +1,12 @@
 <mat-accordion>
+  <!-- first panel -->
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
         Personal data
       </mat-panel-title>
-      <mat-panel-description>
-        Type your name and age
+      <mat-panel-description (click)="stopProp($event)">
+        desc-click-blocked
       </mat-panel-description>
     </mat-expansion-panel-header>
 
@@ -17,6 +18,8 @@
       <input matInput placeholder="Age">
     </mat-form-field>
   </mat-expansion-panel>
+
+<!-- second panel -->
   <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
@@ -29,6 +32,84 @@
     </mat-expansion-panel-header>
     <p>I'm visible because I am open</p>
   </mat-expansion-panel>
+
+<!-- third panel -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header (click)="stopImProp($event);stopProp($event);">
+      <mat-panel-title>
+        header-click-blocked
+      </mat-panel-title>
+      <mat-panel-description>
+        does not work on header
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <input matInput placeholder="First name">
+    </mat-form-field>
+  </mat-expansion-panel>
+
+<!-- fourth panel -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        iconsDesc
+      </mat-panel-title>
+      <mat-panel-description (click)="stopProp($event);">
+
+        <button mat-button 
+        (click)="onButtonClick($event)">ClickMe</button>
+        <mat-icon (click)="onRefresh($event)">refresh</mat-icon>
+        <mat-icon (click)="onClose($event)">close</mat-icon>
+
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <input matInput placeholder="First name">
+    </mat-form-field>
+  </mat-expansion-panel>
+
+<!-- fifth panel -->
+   <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        DescSearch-Doesn'tWork
+      </mat-panel-title>
+      
+      <mat-panel-description (click)="stopProp($event)">
+        <div (click)="stopProp($event)">
+          <input placeholder="Search" 
+          (change)="onSearch($event)" 
+          >
+        </div>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <input matInput placeholder="First name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Age">
+    </mat-form-field>
+    <p>Search in description does not work</p>
+    <p>Search in body works</p>
+    <div>isSearchBox: {{isSearchBox}}</div>
+
+    <div>
+      <input placeholder="Search" (change)="onSearch($event)">
+    </div>
+    <ng-container *ngIf="isSearchBox">
+      <mat-form-field>
+        <input matInput placeholder="PAN No.">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Adhaar No.">
+      </mat-form-field>
+    </ng-container>
+  </mat-expansion-panel>
+
+
 </mat-accordion>
 
 
